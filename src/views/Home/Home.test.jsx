@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import Home from "./Home"
 
 const user = {
@@ -13,6 +14,6 @@ const user = {
 }
 
 test('Should render the user profile', () => {
-render(<Home />)
+render(<MemoryRouter><Home /></MemoryRouter>)
 screen.getByText(/loading/i);
 })
