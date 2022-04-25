@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { render, screen, waitFor } from '@testing-library/react'
 import Home from "./Home"
 
 const user = {
@@ -13,7 +12,26 @@ const user = {
   color: 'crimson',
 }
 
-test('Should render the user profile', () => {
-render(<MemoryRouter><Home /></MemoryRouter>)
-screen.getByText(/loading/i);
+test('Should render the user profile', async () => {
+  render(<Home user={user}/>)
+  screen.debug();
+
+const name = screen.getByText('Vonta');
+expect(name).toHaveTextContent('Vonta');
+
+const saying = screen.getByText('Res Non Verba');
+expect(saying).toHaveTextContent('Res Non Verba');
+
+screen.findByAltText('avatar');
+// expect(image).toHaveTextContent('avatar');
+
+screen.findByAltText('header');
+
+
+
+user.likes.forEach(item=> screen.getByText(`${item}`));
+
+
+
 })
+
