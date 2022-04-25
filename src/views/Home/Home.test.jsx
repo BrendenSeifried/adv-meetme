@@ -1,3 +1,5 @@
+import { render, screen } from '@testing-library/react'
+import Home from "./Home"
 
 const user = {
   id: 1,
@@ -11,5 +13,6 @@ const user = {
 }
 
 test('Should render the user profile', () => {
-
+render(<Home />)
+screen.getByText(/loading/i);
 })
